@@ -1,0 +1,17 @@
+<md-sidenav-layout fullscreen>
+  <md-toolbar>
+    <button md-icon-button (click)="sideNav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+  </md-toolbar>
+  <md-sidenav #sideNav mode="side">
+    <md-list>
+      <md-list-item *ngFor="let item of views">
+        <a [routerLink]="item.navigate" routerLinkActive="active">{{item.name}}</a>
+      </md-list-item>
+    </md-list>
+    <button (click)="logout()">Logout</button>
+  </md-sidenav>
+  <router-outlet></router-outlet>
+  <app-dashlet></app-dashlet>
+</md-sidenav-layout>

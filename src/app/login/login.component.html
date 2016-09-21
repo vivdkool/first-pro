@@ -1,0 +1,26 @@
+<md-card>
+  <md-card-header>
+    Login
+  </md-card-header>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <md-card-content>
+      <md-input id="loginEmail" name="loginEmail" placeholder="Your Email" required type="email" [(ngModel)]="email" #loginEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"></md-input>
+
+      <div class="md-errors-spacer" [hidden]="loginEmail.valid || loginEmail.untouched">
+        <div class="md-char-counter" *ngIf="loginEmail.errors && loginEmail.errors.required">
+          Email is required
+        </div>
+        <div class="md-char-counter" *ngIf="loginEmail.errors && loginEmail.errors.pattern">
+          Email is invalid
+        </div>
+      </div>
+
+      <md-input id="loginPassword" name="loginPassword" type="password" required placeholder="Your Password" [(ngModel)]="password" #loginPassword="ngModel"></md-input>
+
+      <div [hidden]="loginPassword.valid || loginPassword.untouched" class="alert alert-danger">Password Required</div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button type="submit" [disabled]="!loginForm.form.valid"> Sign In</button>
+    </md-card-actions>
+  </form>
+</md-card>
